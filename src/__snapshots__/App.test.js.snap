@@ -35,6 +35,7 @@ exports[`Render App 1`] = `
   >
     <div
       className="ui left internal rail"
+      id="playerOne"
     >
       <div
         className="ui segment"
@@ -55,12 +56,13 @@ exports[`Render App 1`] = `
           className="ui button"
           onClick={[Function]}
         >
-          Add point
+          add point
         </button>
       </div>
     </div>
     <div
       className="ui right internal rail"
+      id="playerTwo"
     >
       <div
         className="ui segment"
@@ -81,7 +83,7 @@ exports[`Render App 1`] = `
           className="ui button"
           onClick={[Function]}
         >
-          Add point
+          add point
         </button>
       </div>
     </div>
@@ -95,7 +97,7 @@ exports[`Render App 1`] = `
       }
     }
   >
-    Reset
+    reset
   </button>
 </div>
 `;

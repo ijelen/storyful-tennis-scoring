@@ -25,7 +25,7 @@ const App = () => {
       </p>
       <div className="ui divider" style={{ marginBottom: "3rem" }}></div>
       <div className="ui segment" style={{ height: "14rem" }}>
-        <div className="ui left internal rail">
+        <div id="playerOne" className="ui left internal rail">
           <div className="ui segment">
             <p>Player 1</p>
             <p style={{ fontSize: "1.5rem" }}>
@@ -39,11 +39,11 @@ const App = () => {
                 }
               }}
             >
-              Add point
+              add point
             </button>
           </div>
         </div>
-        <div className="ui right internal rail">
+        <div id="playerTwo" className="ui right internal rail">
           <div className="ui segment">
             <p>Player 2</p>
             <p style={{ fontSize: "1.5rem" }}>
@@ -57,7 +57,7 @@ const App = () => {
                 }
               }}
             >
-              Add point
+              add point
             </button>
           </div>
         </div>
@@ -70,7 +70,7 @@ const App = () => {
           setPlayerTwoScore(0);
         }}
       >
-        Reset
+        reset
       </button>
     </div>
   );
