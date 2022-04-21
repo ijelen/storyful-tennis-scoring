@@ -9,6 +9,23 @@ const App = () => {
     (playerOneScore < 4 && playerTwoScore < 4) ||
     Math.abs(playerOneScore - playerTwoScore) < 2;
 
+  const handleAddPointForPlayerOne = () => {
+    if (gameIsNotFinished) {
+      setPlayerOneScore((playerOneScore) => playerOneScore + 1);
+    }
+  };
+
+  const handleAddPointForPlayerTwo = () => {
+    if (gameIsNotFinished) {
+      setPlayerTwoScore((playerTwoScore) => playerTwoScore + 1);
+    }
+  };
+
+  const handleReset = () => {
+    setPlayerOneScore(0);
+    setPlayerTwoScore(0);
+  };
+
   return (
     <div className="ui container" style={{ marginTop: "3rem" }}>
       <h1 className="ui header">Option one: Tennis scoring</h1>
@@ -31,14 +48,7 @@ const App = () => {
             <p style={{ fontSize: "1.5rem" }}>
               {formatedPlayerScore(playerOneScore, playerTwoScore)}
             </p>
-            <button
-              className="ui button"
-              onClick={(e) => {
-                if (gameIsNotFinished) {
-                  setPlayerOneScore((playerOneScore) => playerOneScore + 1);
-                }
-              }}
-            >
+            <button className="ui button" onClick={handleAddPointForPlayerOne}>
               add point
             </button>
           </div>
@@ -49,14 +59,7 @@ const App = () => {
             <p style={{ fontSize: "1.5rem" }}>
               {formatedPlayerScore(playerTwoScore, playerOneScore)}
             </p>
-            <button
-              className="ui button"
-              onClick={(e) => {
-                if (gameIsNotFinished) {
-                  setPlayerTwoScore((playerTwoScore) => playerTwoScore + 1);
-                }
-              }}
-            >
+            <button className="ui button" onClick={handleAddPointForPlayerTwo}>
               add point
             </button>
           </div>
@@ -65,10 +68,7 @@ const App = () => {
       <button
         className="ui button"
         style={{ float: "right" }}
-        onClick={() => {
-          setPlayerOneScore(0);
-          setPlayerTwoScore(0);
-        }}
+        onClick={handleReset}
       >
         reset
       </button>
