@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  const [playerOneScore, setPlayerOneScore] = useState(0);
+  const [playerTwoScore, setPlayerTwoScore] = useState(0);
+
+  const formatedPlayerScore = (playerA, playerB) => {
+    if (playerA === 0) return "love";
+    if (playerA === 1) return "fifteen";
+    if (playerA === 2) return "thirty";
+    if (playerA === playerB) return "deuce";
+    if (playerA === 3 && playerB < 3) return "forty";
+    if (playerA + 1 === playerB) return "forty";
+    if (playerA - 1 === playerB) return "advantage";
+    if (playerA - 2 === playerB || (playerA === 4 && playerB < 3))
+      return "win!";
+    if (playerA + 2 === playerB) return "lost";
+    return "error";
+  };
+
+  const gameIsNotFinished =
+    (playerOneScore < 4 && playerTwoScore < 4) ||
+    Math.abs(playerOneScore - playerTwoScore) < 2;
+
   return (
     <div className="ui container" style={{ marginTop: "3rem" }}>
       <h1 className="ui header">Option one: Tennis scoring</h1>
@@ -16,23 +37,54 @@ const App = () => {
         opponent
       </p>
       <div className="ui divider" style={{ marginBottom: "3rem" }}></div>
-      <div className="ui segment" style={{ height: "6rem" }}>
+      <div className="ui segment" style={{ height: "14rem" }}>
         <div className="ui left internal rail">
           <div className="ui segment">
             <p>Player 1</p>
-            <p style={{ fontSize: "1.5rem" }}>Love</p>
-            <button className="ui button">Add point</button>
+            <p style={{ fontSize: "1.5rem" }}>
+              {formatedPlayerScore(playerOneScore, playerTwoScore)}
+            </p>
+            <button
+              className="ui button"
+              onClick={(e) => {
+                if (gameIsNotFinished) {
+                  setPlayerOneScore((playerOneScore) => playerOneScore + 1);
+                }
+              }}
+            >
+              Add point
+            </button>
           </div>
         </div>
         <div className="ui right internal rail">
           <div className="ui segment">
             <p>Player 2</p>
-
-            <p style={{ fontSize: "1.5rem" }}>Fifteen</p>
-            <button className="ui button">Add point</button>
+            <p style={{ fontSize: "1.5rem" }}>
+              {formatedPlayerScore(playerTwoScore, playerOneScore)}
+            </p>
+            <button
+              className="ui button"
+              onClick={(e) => {
+                if (gameIsNotFinished) {
+                  setPlayerTwoScore((playerTwoScore) => playerTwoScore + 1);
+                }
+              }}
+            >
+              Add point
+            </button>
           </div>
         </div>
       </div>
+      <button
+        className="ui button"
+        style={{ float: "right" }}
+        onClick={() => {
+          setPlayerOneScore(0);
+          setPlayerTwoScore(0);
+        }}
+      >
+        Reset
+      </button>
     </div>
   );
 };
